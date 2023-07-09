@@ -16,3 +16,9 @@ After the activation, I downloaded the packages I needed for analytics using:
 
 python3 -m pip install pandas numpy matplotlib 
 
+Then later for future usage by others, I created the requirements.txt file by using :
+
+$ python3 -m pip freeze>requirements.txt 
+
+
+
