@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt 
 import numpy as np 
 import pandas as pd 
+import re 
 
 df= pd.read_csv("Pokemon.csv") 
 top_frame = df.head(5) #Reads the first five items at the top 
@@ -54,11 +55,17 @@ filtered = df.loc[(df["Type 1"] == "Fire") & (df["Total"] > 400) & (df["Type 2"]
 
 filtered.reset_index(drop=True , inplace=True) #Resets the index and uses newer ones 
 
-print("See our new filter") 
-print(filtered)
+
 
 #Searching for strings 
-filtered = df.loc[(df["Name"].str.contains("Mega"))] 
-print("See Another filter") 
+filtered = df.loc[(df["Name"].str.contains("Mega"))] #Returns names that has Mega 
 
-print(filtered.iloc[0 : 6])
+filtered = df.loc[(df["Name"].str.contains("^pi[a-z]*" , flags=re.I , regex=True))] 
+
+
+#Modify values conditionally 
+
+filtered.loc[(df["Name"] == "Pidgeot" , "Type 2")] = "Number" 
+print(filtered)
+
+
